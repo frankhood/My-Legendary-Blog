@@ -1,8 +1,8 @@
 from rest_framework import serializers
 from blog.models import Post
 
-class PostSerializer(serializers.ModelSerializer):
 
+class PostSerializer(serializers.ModelSerializer):
     image = serializers.SerializerMethodField()
 
     class Meta:
@@ -16,7 +16,7 @@ class PostSerializer(serializers.ModelSerializer):
             "published_date",
             "image",
         )
-    
+
     def get_image(self, obj):
         if obj and obj.image:
             return obj.image.url

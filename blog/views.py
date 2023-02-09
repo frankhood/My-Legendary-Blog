@@ -1,12 +1,16 @@
-from django.views.generic import TemplateView, DetailView
+from django.shortcuts import render
 from . import models
-# Create your views here.
 
-class PostListTemplateView(TemplateView):
-    template_name = "blog/post_list.html"
 
-class PostDetailView(DetailView):
-    template_name = "blog/post_detail.html"
+def post_list_view(request):
+    context = {
+        "object_list": models.Post.objects.all()
+    }
+    return render(request, "blog/post_list.html", context)
 
-    model = models.Post
 
+def post_detail_view(request, id):
+    context = {
+        "object": models.Post.objects.get(id=id)
+    }
+    return render(request, "blog/post_detail.html", context)

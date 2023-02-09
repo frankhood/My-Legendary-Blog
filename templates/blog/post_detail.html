@@ -1,0 +1,13 @@
+<h1>{{ object.title }}</h1>
+<h3>{{ object.author }}</h3>
+<p>{{ object.text }}</p>
+
+{% with object.image.url as image_url %}
+    <img src="{{ image_url }}" alt="Immagine {{ object.title }}">
+{% endwith %}
+
+<p>Creato il: {{ object.created_date|date:"d/m/Y H:i" }}</p>
+
+{% if object.published_date %}
+    <p>Pubblicato il: {{ object.published_date|date:"d/m/Y H:i" }}</p>
+{% endif %}

@@ -1,8 +1,7 @@
-
 from django.urls import path
 from blog.api import views as api_views
 
 urlpatterns = [
-    path("post/", api_views.PostListDetailAPIView.as_view(), name="post-list-api"),
-    path("post/<slug:slug>/", api_views.PostListDetailAPIView.as_view(), name="post-detail-api"),
+    path("posts/", api_views.PostListAPIView.as_view(), name="post-list-api"),
+    path("post/<int:id>/", api_views.PostRetrieveAPIView.as_view(), name="post-retrieve-api"),
 ]
