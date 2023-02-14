@@ -26,9 +26,11 @@ urlpatterns = [
     # path('api-auth/', include('rest_framework.urls'))
 ]
 
+
 # urlpatterns += [
 #     path("api/v1/", include("blog.api.urls")),
 # ]
 
+# Decommentare per servire i files statici e i media
 # urlpatterns += static.static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 # urlpatterns += static.static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
