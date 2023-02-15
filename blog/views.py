@@ -8,6 +8,12 @@ def post_list_view(request):
     }
     return render(request, "blog/post_list.html", context)
 
+def my_blog_templte(request):
+    context = {
+        "object_list": models.Post.objects.all()
+    }
+    return render(request, "blog/post_list.html", context)
+
 
 def post_detail_view(request, id):
     context = {
