@@ -8,6 +8,7 @@
         <template v-if="slots.image">
           <slot name="image" />
         </template>
+        <img v-else src="https://via.placeholder.com/327x582" alt="Placeholder" />
         <figure class="post-text">
           <blockquote>
             <slot name="text" />
@@ -42,6 +43,7 @@ const slots = useSlots();
 
 .post-wrapper ::v-deep(img) {
   width: max(33%, 160px);
+  object-fit: cover;
   aspect-ratio: 9/16;
 }
 
