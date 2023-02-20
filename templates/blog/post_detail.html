@@ -1,0 +1,27 @@
+{% extends "blog/base.html" %}
+
+{% block main_content %}
+  <post-detail-cmp>
+    <template #title>
+      <h1>{{ object.title }}</h1>
+    </template>
+
+    {% with object.image.url as image_url %}
+      <template #image>
+        <img src="{{ image_url }}" alt="Immagine {{ object.title }}">
+      </template>
+    {% endwith %}
+
+    <template #text>
+      <p>{{ object.text }}</p>
+    </template>
+
+    <template #author>{{ object.author }}</template>
+
+    {% if object.published_date %}
+      <template #published_date>
+        <p>Pubblicato il: {{ object.published_date|date:"d/m/Y H:i" }}</p>
+      </template>
+    {% endif %}
+  </post-detail-cmp>
+{% endblock main_content %}

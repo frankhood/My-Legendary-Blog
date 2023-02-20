@@ -1,0 +1,21 @@
+{% extends "blog/base.html" %}
+
+{% block main_content %}
+  <post-list-cmp>
+    <template #heading>
+      <h1>I miei post (es. Slot)</h1>
+    </template>
+
+    <template #list>
+      {% for object in object_list %}
+        <li><a href="{% url 'post-detail' object.id %}">{{ object.title }}</a></li>
+      {% endfor %}
+    </template>
+  </post-list-cmp>
+
+  <post-list-async-cmp data-api-url="{{ post_list_api_url }}">
+    <template #heading>
+      <h1>I miei post (es. Async)</h1>
+    </template>
+  </post-list-async-cmp>
+{% endblock main_content %}

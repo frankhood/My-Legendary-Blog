@@ -3,3 +3,9 @@ db.sqlite3
 __pycache__/
 myvenv
 .DS_Store
+
+# Frontend
+fe-src/node_modules/
+static
+var
+.idea/
