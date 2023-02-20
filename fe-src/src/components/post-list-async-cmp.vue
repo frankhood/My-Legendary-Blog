@@ -3,24 +3,14 @@
     <div class="container">
       <div class="heading-wrapper">
         <slot name="heading" />
+        <span class="items-number">Numero di post: {{ itemsNumber }}</span>
       </div>
       <ul class="list-wrapper">
         <li
-          v-for="item in listItems"
+          v-for="item in apiResponse"
           :key="`item-${item.slug}-${_uid}`"
         >
-          <span
-            v-if="item.apiError"
-            class="api-error"
-          >
-            {{ item.apiError }}
-          </span>
-          <a
-            v-else
-            :href="item.url"
-          >
-            {{ item.title }}
-          </a>
+          <a :href="item.url">{{ item.title }}</a>
         </li>
       </ul>
     </div>
@@ -44,25 +34,15 @@ export default {
     }
   },
   computed: {
-    listItems() {
-      if (this.apiResponse.length > 0) {
-        if (!this.apiResponse.some(el => el.apiError)){
-          return this.apiResponse.filter(el => el.url);
-        }
-      }
-
-      return this.apiResponse;
+    itemsNumber() {
+      return this.apiResponse.length;
     }
   },
   mounted() {
-    new Promise((resolve, reject) => {
-      axios.get(this.dataApiUrl).then((response) => {
-        this.apiResponse = response.data;
-        resolve(response.data);
-      }).catch((err) => {
-        this.apiResponse.push({ apiError: 'Something wrong with the API' });
-        reject(err);
-      });
+    axios.get(this.dataApiUrl).then((response) => {
+      this.apiResponse = response.data;
+    }).catch((err) => {
+      console.log('Error: ', err);
     });
   }
 }
@@ -72,6 +52,15 @@ export default {
 .heading-wrapper {
   padding: 15px;
   border: 1px solid #ededed;
+}
+
+.heading-wrapper .items-number {
+  display: block;
+  font-weight: 300;
+  font-style: normal;
+  text-align: center;
+  color: darkgrey;
+  padding-top: 10px;
 }
 
 .list-wrapper {
@@ -84,10 +73,6 @@ export default {
 .list-wrapper > ::v-deep(li) {
   border-bottom: 1px solid #ededed;
   padding: 15px;
-}
-
-.list-wrapper > ::v-deep(li) > .api-error {
-  color: red;
 }
 
 .list-wrapper > ::v-deep(li) > a {

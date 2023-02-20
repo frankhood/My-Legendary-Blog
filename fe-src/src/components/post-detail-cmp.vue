@@ -6,7 +6,7 @@
           <slot name="title" />
         </header>
         <div class="post-body">
-          <template v-if="slots.image">
+          <template v-if="!!$slots.image">
             <slot name="image" />
           </template>
           <img v-else src="https://via.placeholder.com/327x582" alt="Placeholder" />
@@ -17,7 +17,7 @@
             <footer class="post-footer">
               <p>
                 <slot name="author" />
-                <time v-if="slots.published_date" class="published-date"><slot name="published_date" /></time>
+                <time v-if="!!$slots.published_date" class="published-date"><slot name="published_date" /></time>
               </p>
             </footer>
           </div>
@@ -27,9 +27,10 @@
   </div>
 </template>
 
-<script setup>
-import { useSlots } from 'vue';
-const slots = useSlots();
+<script>
+export default {
+  name: 'PostDetailCmp',
+}
 </script>
 
 <style lang="css" scoped>
