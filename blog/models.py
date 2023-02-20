@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 from django.conf import settings
 from django.db import models
 from django.urls import NoReverseMatch, reverse_lazy, reverse
@@ -29,4 +27,3 @@ class Post(models.Model):
             ...
         return ""
         
->>>>>>> main

@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 from rest_framework import serializers
 from blog.models import Post
 
@@ -32,4 +30,3 @@ class PostSerializer(serializers.ModelSerializer):
             request = self.context.get("request")
             return request.build_absolute_uri(obj.get_absolute_url())
         return ""
->>>>>>> main

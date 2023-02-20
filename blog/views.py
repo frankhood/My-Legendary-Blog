@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 from django.shortcuts import render
 from . import models
 from django.urls import reverse, reverse_lazy
@@ -24,4 +22,3 @@ def post_detail_view(request, id):
         "object": models.Post.objects.get(id=id)
     }
     return render(request, "blog/post_detail.html", context)
->>>>>>> main
