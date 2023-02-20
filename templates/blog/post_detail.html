@@ -12,16 +12,12 @@
       </template>
     {% endwith %}
 
-    <template #text>
-      <p>{{ object.text }}</p>
-    </template>
+    <template #text>{{ object.text }}</template>
 
     <template #author>{{ object.author }}</template>
 
     {% if object.published_date %}
-      <template #published_date>
-        <p>Pubblicato il: {{ object.published_date|date:"d/m/Y H:i" }}</p>
-      </template>
+      <template #published_date>Pubblicato il: {{ object.published_date|date:"d/m/Y H:i" }}</template>
     {% endif %}
   </post-detail-cmp>
 {% endblock main_content %}

@@ -1,24 +1,28 @@
 <template>
   <div class="PostDetailCmp">
     <div class="container">
-      <div class="heading-wrapper">
-        <slot name="title" />
-      </div>
-      <figure class="post-wrapper">
-        <template v-if="slots.image">
-          <slot name="image" />
-        </template>
-        <img v-else src="https://via.placeholder.com/327x582" alt="Placeholder" />
-        <figure class="post-text">
-          <blockquote>
-            <slot name="text" />
-          </blockquote>
-          <figcaption>
-            <slot name="author" />
-            <span v-if="slots.published_date" class="date"><slot name="published_date" /></span>
-          </figcaption>
-        </figure>
-      </figure>
+      <article class="post-box">
+        <header class="post-header">
+          <slot name="title" />
+        </header>
+        <div class="post-body">
+          <template v-if="slots.image">
+            <slot name="image" />
+          </template>
+          <img v-else src="https://via.placeholder.com/327x582" alt="Placeholder" />
+          <div class="post-content">
+            <p class="post-text">
+              <slot name="text" />
+            </p>
+            <footer class="post-footer">
+              <p>
+                <slot name="author" />
+                <time v-if="slots.published_date" class="published-date"><slot name="published_date" /></time>
+              </p>
+            </footer>
+          </div>
+        </div>
+      </article>
     </div>
   </div>
 </template>
@@ -29,34 +33,34 @@ const slots = useSlots();
 </script>
 
 <style lang="css" scoped>
-.heading-wrapper {
+.post-box .post-header {
   padding: 15px;
   border: 1px solid #ededed;
 }
 
-.post-wrapper {
+.post-box .post-body {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-top: 1rem;
 }
 
-.post-wrapper ::v-deep(img) {
+.post-box .post-body ::v-deep(img) {
   width: max(33%, 160px);
   object-fit: cover;
   aspect-ratio: 9/16;
 }
 
-.post-wrapper .post-text {
+.post-box .post-body .post-content {
   flex: 1;
   padding: 1rem 0 0;
 }
 
-.post-wrapper .post-text blockquote {
+.post-box .post-body .post-content .post-text {
   text-align: justify;
 }
 
-.post-wrapper .post-text figcaption {
+.post-box .post-body .post-content .post-footer p {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -66,7 +70,7 @@ const slots = useSlots();
   padding-top: 2rem;
 }
 
-.post-wrapper .post-text figcaption .date {
+.post-box .post-body .post-content .post-footer p .published-date {
   font-weight: 300;
   font-style: normal;
   text-align: right;
@@ -74,12 +78,12 @@ const slots = useSlots();
 }
 
 @media (min-width: 500px) {
-  .post-wrapper {
+  .post-box .post-body {
     flex-direction: row;
     align-items: flex-start;
   }
 
-  .post-wrapper .post-text {
+  .post-box .post-body .post-content {
     padding: 0 0 0 2rem;
   }
 }
