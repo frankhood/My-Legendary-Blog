@@ -27,6 +27,5 @@ class PostSerializer(serializers.ModelSerializer):
 
     def get_url(self, obj):
         if obj and obj.id:
-            request = self.context.get("request")
-            return request.build_absolute_uri(obj.get_absolute_url())
+            return obj.get_absolute_url()
         return ""
