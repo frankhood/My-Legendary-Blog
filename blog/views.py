@@ -6,7 +6,7 @@ from django.urls import reverse, reverse_lazy
 def post_list_view(request):
     context = {
         "object_list": models.Post.objects.all(),
-        "post_list_api_url": request.build_absolute_uri(reverse_lazy("post-list-api"))
+        "post_list_api_url": "http://localhost:8000/api/v1/posts/"
     }
     return render(request, "blog/post_list.html", context)
 
