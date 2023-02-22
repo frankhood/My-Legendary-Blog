@@ -10,7 +10,7 @@ def post_list_view(request):
     }
     return render(request, "blog/post_list.html", context)
 
-def my_blog_templte(request):
+def my_blog_template(request):
     context = {
         "object_list": models.Post.objects.all()
     }
